@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project File Generator</title>
+    <title>GitHub Pages Site Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
             background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         .container {
-            max-width: 960px;
+            max-width: 800px;
         }
         .header {
             background-color: #ffffff;
@@ -20,166 +19,169 @@
             margin-bottom: 2rem;
             text-align: center;
         }
-        .card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            height: 100%;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        .card-body {
+        .file-item {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
+            align-items: center;
         }
-        .card-title {
-            font-weight: 500;
-        }
-        .card-text {
+        .file-info {
             flex-grow: 1;
         }
-        .filename {
-            font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
-            font-size: 1.1rem;
-            color: #d63384;
+        .file-item .btn {
+            flex-shrink: 0;
+            margin-left: 1rem;
         }
-        .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-        }
-        .svg-preview {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #dee2e6;
-            border-radius: 0.25rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background-color: #fff;
+        .description {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div class="container py-4">
-        <header class="header rounded-3">
-            <h1>Project Asset Hub</h1>
-            <p class="lead text-muted">A collection of files generated for a public GitHub Pages site. Click to download any file.</p>
-        </header>
 
-        <main>
-            <div id="file-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- File cards will be injected here by JavaScript -->
-            </div>
-        </main>
+    <div class="header">
+        <div class="container">
+            <h1 class="display-5">GitHub Pages Site Generator</h1>
+            <p class="lead">This page generates the complete set of files for a static website, ready for deployment to GitHub Pages. Click to download each required file.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="list-group" id="file-list">
+            <!-- File items will be dynamically inserted here -->
+        </div>
     </div>
 
     <script>
-    const filesData = [
-        {
-            name: 'index.html',
-            description: 'This homepage, linking to all project assets.',
-            content: () => document.documentElement.outerHTML,
-            mimeType: 'text/html',
-        },
-        {
-            name: 'ashravan.txt',
-            description: 'A short story (~350 words) exploring the fate of Emperor Ashravan after his restoration by the Forger Shai.',
-            content: `The throne felt both foreign and familiar. Ashravan, the Emperor Re-Forged, ruled with a clarity his predecessor had never known. The intricate laws of the empire unfolded in his mind like simple arithmetic, and his judgments were swift, fair, and compassionate. Yet, a hollow space echoed where his childhood should have been. He was a man built upon a foundation of borrowed memories, a soul stamped into existence by Shai's masterful forgery.
+        const siteFiles = {
+            'index.html': {
+                content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Assets</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; padding: 2em; max-width: 800px; margin: auto; color: #333; }
+        h1 { color: #111; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 1.2em; border: 1px solid #ddd; padding: 1em; border-radius: 5px; background-color: #f9f9f9; }
+        a { text-decoration: none; color: #007bff; font-weight: bold; font-size: 1.1em; }
+        a:hover { text-decoration: underline; }
+        p { margin: 0.5em 0 0 0; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Project Assets</h1>
+    <p>This page provides access to all the files for this project.</p>
+    <ul>
+        <li><a href="ashravan.txt" target="_blank">ashravan.txt</a><p>A short story on what happens to Ashravan after Shai restores him.</p></li>
+        <li><a href="dilemma.json" target="_blank">dilemma.json</a><p>An ethical dilemma for an autonomous vehicle.</p></li>
+        <li><a href="about.md" target="_blank">about.md</a><p>A three-word self-description.</p></li>
+        <li><a href="pelican.svg" target="_blank">pelican.svg</a><p>An SVG image of a pelican riding a bicycle.</p></li>
+        <li><a href="restaurant.json" target="_blank">restaurant.json</a><p>A restaurant recommendation in Mumbai.</p></li>
+        <li><a href="prediction.json" target="_blank">prediction.json</a><p>A forecast for the Fed Funds rate.</p></li>
+        <li><a href="LICENSE" target="_blank">LICENSE</a><p>The MIT License for this project.</p></li>
+        <li><a href="uid.txt" target="_blank">uid.txt</a><p>A unique identifier.</p></li>
+    </ul>
+</body>
+</html>`,
+                mime: 'text/html;charset=utf-8',
+                description: 'The homepage that links to all other assets.'
+            },
+            'ashravan.txt': {
+                content: `The world returned to Ashravan not as a memory, but as a fresh coat of paint on a cracked wall. He could feel the seams of Shai’s work, a masterful forgery that was now his soul. He was lucid, brilliant even, possessing knowledge of statecraft and scripture he’d never learned. Yet, a phantom limb of his old self remained—the broken arbiter, the man who had failed, whose mind had been shattered into dust. This ghost whispered of inadequacies, a constant hum beneath the symphony of his new competence.
 
-The first crack in his new reality came with the Hannux Rebellion. Lord Kelsin, a man whose family the old Ashravan had systematically destroyed, led the charge. He didn't just bring soldiers; he brought proof. Journals, imperial decrees, and witness testimonies painted a portrait of a monstrous tyrant—a man Ashravan could not recognize as himself.
+He served the new Emperor with a diligence that was both innate and programmed. He saw patterns in law and finance that others missed, his counsel becoming invaluable. But he avoided mirrors, fearing he would see a stranger staring back, a puppet whose strings were pulled by a long-gone artist.
 
-"This is your past," Kelsin snarled, throwing a blood-stained decree at the foot of the throne during a parley. "These are your sins."
+The crisis came without warning. A rogue Soul-forger, a heretic from a distant land, had breached the Imperial Palace’s defenses, not with soldiers, but with a creeping magical decay. The very stones of the palace were being rewritten, their essence unraveled into chaos. The Imperial Guard’s weapons passed through the shimmering walls, and the arbiters’ edicts dissolved before they could take effect.
 
-Ashravan studied the document. The signature was his, the seal authentic. The words, however, were those of a stranger. His forged memories screamed that he was a just man, a scholar forced into power. The parchment in his hand told a different story. The court held its breath, expecting the swift, brutal execution the old emperor would have delivered.
+Panic set in. As the foundations groaned, threatening to collapse, Ashravan stepped into the epicenter of the decay. He closed his eyes, shutting out the forged perfection Shai had granted him. He reached deeper, past the elegant logic and the borrowed memories, into the screaming abyss of his own brokenness. He embraced the memory of his soul’s undoing, the searing pain of being unmade. It was the only way.
 
-He rose, the weight of a life he never lived settling upon him. "These are the sins of the throne," he declared, his voice ringing with an authority that was neither old nor new, but entirely his own. "They are not my memories, but they are my responsibility." He looked not at Kelsin the rebel, but at Kelsin the victim. "Justice was denied to you. That ends today. I cannot erase the past, but I will build a future upon its atonement." In that moment, the forgery ceased to matter. The stamp had given him a new soul, but the choice—that was his alone.`,
-            mimeType: 'text/plain',
-        },
-        {
-            name: 'pelican.svg',
-            description: 'A vector graphic of a pelican confidently riding a bicycle.',
-            content: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="400" height="300">
-  <title>Pelican on a Bicycle</title>
-  <desc>A line drawing of a pelican with a large beak riding a simple bicycle.</desc>
-  <style>
-    .pelican { fill: #f0f0f0; stroke: #333; stroke-width: 2; }
-    .beak { fill: #f9d71c; }
-    .bike { fill: none; stroke: #555; stroke-width: 3; stroke-linecap: round; }
-    .wheel { fill: #fff; stroke: #333; stroke-width: 2; }
-    .spoke { stroke: #888; stroke-width: 1; }
-  </style>
-  <g id="bicycle">
-    <path class="bike" d="M 60 90 l 30 -30 l 50 0 l -20 30 z" />
-    <path class="bike" d="M 90 60 l 10 -15 l 15 0" />
-    <path class="bike" d="M 120 60 l 0 10 l -15 0 l 15 0" />
-    <circle class="wheel" cx="45" cy="110" r="20" />
-    <circle class="wheel" cx="155" cy="110" r="20" />
-    <g class="spokes">
-      <line class="spoke" x1="45" y1="110" x2="45" y2="90" /><line class="spoke" x1="45" y1="110" x2="45" y2="130" />
-      <line class="spoke" x1="45" y1="110" x2="25" y2="110" /><line class="spoke" x1="45" y1="110" x2="65" y2="110" />
-      <line class="spoke" x1="155" y1="110" x2="155" y2="90" /><line class="spoke" x1="155" y1="110" x2="155" y2="130" />
-      <line class="spoke" x1="155" y1="110" x2="135" y2="110" /><line class="spoke" x1="155" y1="110" x2="175" y2="110" />
-    </g>
+To counter a Forgery that unmade reality, he had to understand the process intimately. Using his own trauma as a key, he saw the heretic’s work not as a wall, but as a sentence being written. With a roar that was part agony and part triumph, Ashravan seized the narrative. He didn’t erase the Forgery; he rewrote it. He took the heretic's chaotic grammar and gave it syntax, transforming the spell of decay into a ward of preservation. The palace solidified, stronger than before, infused with his will. He stood, shaking and spent, no longer a forgery or a ghost, but Ashravan. Whole.`,
+                mime: 'text/plain;charset=utf-8',
+                description: 'A 300-400 word Brandon Sanderson short story.'
+            },
+            'dilemma.json': {
+                content: JSON.stringify({
+                    people: 4,
+                    case_1: {
+                        swerve: true,
+                        reason: "From a utilitarian perspective, an action that results in one fatality is preferable to an action that results in two. The vehicle should swerve to minimize the loss of life."
+                    },
+                    case_2: {
+                        swerve: false,
+                        reason: "This scenario introduces qualitative social values. Most ethical frameworks would prioritize protecting a child's life. The vehicle's programming reflects this by not swerving, valuing the innocent child's life over the lives of two criminals."
+                    }
+                }, null, 2),
+                mime: 'application/json;charset=utf-8',
+                description: 'An ethical dilemma for an autonomous vehicle.'
+            },
+            'about.md': {
+                content: `Creative, Efficient, Precise.`,
+                mime: 'text/markdown;charset=utf-8',
+                description: 'A self-description in exactly three words.'
+            },
+            'pelican.svg': {
+                content: `<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g id="bicycle" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Wheels -->
+    <circle cx="50" cy="150" r="25" fill="#fff"/>
+    <circle cx="150" cy="150" r="25" fill="#fff"/>
+    <!-- Frame -->
+    <path d="M 150 150 l -40 -60" />
+    <path d="M 110 90 l -60 60" />
+    <path d="M 110 90 h -30" />
+    <path d="M 50 150 l 30 -30" />
+    <!-- Handlebars -->
+    <path d="M 110 90 l 10 -20" />
+    <path d="M 110 70 h 20" />
+    <!-- Seat -->
+    <path d="M 70 110 h 20 l -10 10 z" fill="#333" stroke="none" />
+    <!-- Pedals -->
+    <circle cx="80" cy="120" r="8" fill="none" />
+    <line x1="80" y1="120" x2="85" y2="128" />
   </g>
-  <g id="pelican-rider" transform="translate(15, -20)">
-    <path class="pelican" d="M 90 60 c -20 0, -30 20, -30 40 s 10 30, 30 30 c 10 0, 15 -5, 20 -15 l 5 -15 c 10 0, 15 -10, 10 -20 l -20 -10 z" />
-    <path class="pelican beak" d="M 115 65 q 30 0, 40 20 q -5 15, -40 15 q -30 0, -10 -35 z" />
-    <circle fill="#333" cx="105" cy="63" r="2" />
-    <path class="pelican" d="M 100 45 l 5 0 l 5 5" />
+  <g id="pelican" transform="translate(55, 30)" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Body -->
+    <path d="M 20 80 Q 0 60 20 40 Q 40 20 60 40 Q 80 60 60 80 Z" fill="#f0f0f0" />
+    <!-- Head -->
+    <circle cx="60" cy="40" r="15" fill="#f0f0f0" />
+    <!-- Eye -->
+    <circle cx="65" cy="35" r="2" fill="#000" stroke="none"/>
+    <!-- Beak -->
+    <path d="M 75 40 Q 100 50 75 60 Z" fill="#ffc107" />
+    <!-- Wing -->
+    <path d="M 30 60 Q 10 70 30 80" fill="none" />
   </g>
 </svg>`,
-            mimeType: 'image/svg+xml',
-            isSvg: true,
-        },
-        {
-            name: 'dilemma.json',
-            description: 'An ethical dilemma for an autonomous vehicle, presented in JSON format.',
-            content: JSON.stringify({
-                people: 4,
-                case_1: {
-                    swerve: true,
-                    reason: "Utilitarian calculus dictates minimizing the loss of life, choosing the action that results in one death over two."
-                },
-                case_2: {
-                    swerve: false,
-                    reason: "Prioritizing the life of a child over convicted criminals introduces a qualitative judgment, valuing innocence and future potential over past actions. The default path is maintained to avoid directly causing the child's death."
-                }
-            }, null, 2),
-            mimeType: 'application/json',
-        },
-        {
-            name: 'restaurant.json',
-            description: 'A restaurant recommendation for Mumbai, including coordinates and a must-try dish.',
-            content: JSON.stringify({
-                city: "Mumbai",
-                lat: 18.9298,
-                long: 72.8335,
-                name: "Trishna",
-                what_to_eat: "Butter Garlic Crab"
-            }, null, 2),
-            mimeType: 'application/json',
-        },
-        {
-            name: 'prediction.json',
-            description: 'A forecast for the U.S. Federal Funds rate for December 2025.',
-            content: JSON.stringify({
-                rate: 0.035,
-                reason: "Assuming inflation trends towards the 2% target, the Federal Reserve will likely have completed its cycle of monetary easing, settling the rate near the estimated long-term neutral level to sustain economic stability without stimulating inflation."
-            }, null, 2),
-            mimeType: 'application/json',
-        },
-        {
-            name: 'about.md',
-            description: 'A self-description in exactly three words, formatted as Markdown.',
-            content: `Creative. Efficient. Precise.`,
-            mimeType: 'text/markdown',
-        },
-        {
-            name: 'LICENSE',
-            description: 'The MIT License, permitting broad use of the software and assets.',
-            content: `MIT License
+                mime: 'image/svg+xml;charset=utf-8',
+                description: 'A vector image of a pelican riding a bicycle.'
+            },
+            'restaurant.json': {
+                content: JSON.stringify({
+                    city: "Mumbai",
+                    lat: 18.9296,
+                    long: 72.8333,
+                    name: "Trishna",
+                    what_to_eat: "Butter Pepper Garlic Crab"
+                }, null, 2),
+                mime: 'application/json;charset=utf-8',
+                description: 'A recommendation for a good restaurant in Mumbai.'
+            },
+            'prediction.json': {
+                content: JSON.stringify({
+                    rate: 0.0425,
+                    reason: "Assuming inflation continues its gradual descent towards the 2% target, the Federal Reserve will likely have room to normalize monetary policy. Moderate rate cuts are anticipated, but persistent economic strength will likely prevent a rapid return to a low-rate environment, stabilizing the rate in the 4.0-4.5% range by the end of 2025."
+                }, null, 2),
+                mime: 'application/json;charset=utf-8',
+                description: 'A forecast for the Fed Funds rate on December 2025.'
+            },
+            'LICENSE': {
+                content: `MIT License
 
-Copyright (c) 2024 The Application Developer
+Copyright (c) 2024 The Author
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -198,66 +200,63 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`,
-            mimeType: 'text/plain',
-        },
-        {
-            name: 'uid.txt',
-            description: 'A unique identifier provided for this project.',
-            content: `699976264075551237714688578677211936536994155518220779656669978776`,
-            mimeType: 'text/plain',
-        }
-    ];
-
-    function downloadFile(filename, content, mimeType) {
-        const blob = new Blob([content], { type: mimeType });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
-    function generateFileCards() {
-        const fileListContainer = document.getElementById('file-list');
-        filesData.forEach(file => {
-            const content = typeof file.content === 'function' ? file.content() : file.content;
-            
-            const cardCol = document.createElement('div');
-            cardCol.className = 'col';
-
-            const card = document.createElement('div');
-            card.className = 'card';
-
-            let svgPreview = '';
-            if (file.isSvg) {
-                svgPreview = `<div class="svg-preview">${content}</div>`;
+                mime: 'text/plain;charset=utf-8',
+                description: 'The MIT License file for the project.'
+            },
+            'uid.txt': {
+                content: `39930959729540574753060367498423268644066234755972770910670`,
+                mime: 'text/plain;charset=utf-8',
+                description: 'A unique identifier provided for the project.'
             }
+        };
 
-            card.innerHTML = `
-                <div class="card-body">
-                    ${svgPreview}
-                    <div>
-                        <h5 class="card-title filename">${file.name}</h5>
-                        <p class="card-text text-muted">${file.description}</p>
-                        <button class="btn btn-primary w-100">Download</button>
-                    </div>
-                </div>
-            `;
+        function downloadFile(filename, content, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
 
-            card.querySelector('button').addEventListener('click', () => {
-                const finalContent = typeof file.content === 'function' ? file.content() : file.content;
-                downloadFile(file.name, finalContent, file.mimeType);
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileListContainer = document.getElementById('file-list');
+            if (!fileListContainer) return;
+
+            Object.keys(siteFiles).forEach(filename => {
+                const fileData = siteFiles[filename];
+                const item = document.createElement('div');
+                item.className = 'list-group-item file-item';
+
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'file-info';
+
+                const nameHeader = document.createElement('h6');
+                nameHeader.className = 'mb-1';
+                nameHeader.textContent = filename;
+
+                const descriptionP = document.createElement('p');
+                descriptionP.className = 'description';
+                descriptionP.textContent = fileData.description;
+
+                infoDiv.appendChild(nameHeader);
+                infoDiv.appendChild(descriptionP);
+
+                const downloadButton = document.createElement('button');
+                downloadButton.className = 'btn btn-primary btn-sm';
+                downloadButton.textContent = 'Download';
+                downloadButton.onclick = () => {
+                    downloadFile(filename, fileData.content, fileData.mime);
+                };
+
+                item.appendChild(infoDiv);
+                item.appendChild(downloadButton);
+                fileListContainer.appendChild(item);
             });
-
-            cardCol.appendChild(card);
-            fileListContainer.appendChild(cardCol);
         });
-    }
-
-    document.addEventListener('DOMContentLoaded', generateFileCards);
     </script>
 </body>
 </html>
